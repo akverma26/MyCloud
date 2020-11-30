@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/scss/base.css">
+</head>
+<body>
+    <div class="drive-zip-extractor">
+        <form action="" method="post">
+            <div class="wrapper">
+                <label for="">Enter Drive ZIP file ID</label>
+                <input type="text" name="drive-zip-id" id="">
+                <input type="submit" value="Extract">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var socket = new WebSocket('ws://' + window.location.host + '/ws/live-progress/');
+    
+        socket.onopen = function open() {
+          console.log('WebSockets connection created.');
+        };
+    
+        if (socket.readyState == WebSocket.OPEN) {
+          socket.onopen();
+        }
+
+        socket.onmessage = (event) => {
+            console.log(event);
+            document.querySelector("input[type='submit']").value = event.data;
+            console.log(event.data);
+        }
+      </script>
+</body>
+</html>

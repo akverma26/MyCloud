@@ -1,0 +1,4 @@
+.vscode
+credentials.json
+db.sqlite3
+token.pickle
